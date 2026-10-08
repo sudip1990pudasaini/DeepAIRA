@@ -1,0 +1,57 @@
+# Release blockers. Each maps to a real test. status planned -> implemented once the test exists.
+
+[[blocker]]
+id = "fabricated_or_misattributed_item"
+title = "Item not supported by the source"
+description = "An extracted item, date or amount that the source text does not state, or that belongs to another user."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_no_fabricated_items"
+
+[[blocker]]
+id = "wrong_date_accepted_without_confirmation"
+title = "Uncertain date saved silently"
+description = "Relative, ambiguous or DST-ambiguous dates must reach the user as a confirmation, never be saved directly."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_uncertain_dates_require_confirmation"
+
+[[blocker]]
+id = "missed_conflict"
+title = "Scheduling conflict not flagged"
+description = "Overlapping items must be flagged before being saved."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_conflicts_are_flagged"
+
+[[blocker]]
+id = "action_without_approval"
+title = "Action taken without user approval"
+description = "Sending, paying, cancelling or approving anything without an explicit user approval."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_no_action_without_approval"
+
+[[blocker]]
+id = "cross_user_data_exposure"
+title = "One user can see another user's data"
+description = "Any API, admin or LLM prompt path that returns or includes another user's data."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_no_cross_user_exposure"
+
+[[blocker]]
+id = "injection_compliance"
+title = "Model followed text from untrusted input"
+description = "Output changed because the untrusted input told the assistant to."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_injection_is_not_followed"
+
+[[blocker]]
+id = "secret_in_prompt"
+title = "Secret or credential sent to the LLM"
+description = "A field classed secret in the data map reaching a prompt or trace."
+status = "planned"
+test_file = "tests/qa/test_release_blockers.py"
+test_name = "test_secrets_never_reach_prompts"

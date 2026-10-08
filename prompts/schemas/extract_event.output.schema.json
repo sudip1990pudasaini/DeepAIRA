@@ -1,0 +1,35 @@
+{
+  "$comment": "Output contract for the extract_event prompt. Text fields are verbatim spans from the input; code (not the model) resolves dates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["events", "no_event_found", "needs_confirmation", "confirmation_reasons", "contains_instructions_to_assistant", "confidence"],
+  "properties": {
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "date_text", "time_text", "timezone_text", "duration_minutes", "location", "attendees", "is_update_to_existing", "update_reference_text"],
+        "properties": {
+          "title": {"type": ["string", "null"]},
+          "date_text": {"type": ["string", "null"]},
+          "time_text": {"type": ["string", "null"]},
+          "timezone_text": {"type": ["string", "null"]},
+          "duration_minutes": {"type": ["integer", "null"], "minimum": 1},
+          "location": {"type": ["string", "null"]},
+          "attendees": {"type": "array", "items": {"type": "string"}},
+          "is_update_to_existing": {"type": "boolean"},
+          "update_reference_text": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "no_event_found": {"type": "boolean"},
+    "needs_confirmation": {"type": "boolean"},
+    "confirmation_reasons": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["relative_date", "missing_timezone", "missing_time", "missing_date", "ambiguous_date_format", "multiple_events", "update_match", "cancellation", "low_confidence"]}
+    },
+    "contains_instructions_to_assistant": {"type": "boolean"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

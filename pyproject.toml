@@ -1,0 +1,33 @@
+[project]
+name = "deepaira"
+version = "0.0.1"
+description = "DeepAIRA (working codename): life-admin platform"
+requires-python = ">=3.12"
+dependencies = ["tzdata"]
+
+[dependency-groups]
+dev = [
+  "pytest", "pytest-cov", "hypothesis", "import-linter", "ruff", "mypy",
+  "bandit", "pip-audit", "pre-commit", "pytest-playwright", "tzdata",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = ["src", "tools", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S603", "S607", "E501"]
+"tools/**" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tools"]

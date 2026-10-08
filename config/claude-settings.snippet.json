@@ -1,0 +1,10 @@
+{
+  "_comment": "Merge into .claude/settings.json AFTER installing AI-DLC (the installer may overwrite that file). [VERIFY] rule syntax against current Claude Code docs.",
+  "permissions": {
+    "deny": [
+      "Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)", "Read(./**/*.pem)", "Read(./**/*.key)",
+      "Bash(curl:*)", "Bash(wget:*)"
+    ],
+    "ask": ["Bash(pip install:*)", "Bash(uv add:*)", "Bash(npm install:*)", "Bash(git push:*)"]
+  }
+}

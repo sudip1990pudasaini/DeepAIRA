@@ -1,0 +1,106 @@
+# Bounded contexts: the single source of truth. tools/governance.py checks this file against
+# src/deepaira/* and .importlinter. A higher layer may import a lower layer, never the reverse;
+# contexts on the same layer must not import each other.
+root_package = "deepaira"
+
+[[context]]
+name = "admin"
+layer = 1
+purpose = "Admin console: support tools, metrics views. Reads others via public interfaces only."
+table_prefix = "adm"
+
+[[context]]
+name = "privacy"
+layer = 1
+purpose = "Data export, deletion requests, consent records."
+table_prefix = "prv"
+
+[[context]]
+name = "capture"
+layer = 2
+purpose = "Inbound channels: forward-by-email, paste, upload. Stores raw input briefly, then hands to extraction."
+table_prefix = "cap"
+
+[[context]]
+name = "calendar_bookings"
+layer = 3
+purpose = "Category: appointments, meetings, bookings."
+table_prefix = "cal"
+
+[[context]]
+name = "bills_renewals"
+layer = 3
+purpose = "Category: bills, renewals, subscriptions."
+table_prefix = "bil"
+
+[[context]]
+name = "invoices_approvals"
+layer = 3
+purpose = "Category: invoices and approvals."
+table_prefix = "inv"
+
+[[context]]
+name = "returns_warranty"
+layer = 3
+purpose = "Category: returns, warranty, price-drop windows."
+table_prefix = "ret"
+
+[[context]]
+name = "moving_life_events"
+layer = 3
+purpose = "Category: moving and life-event checklists."
+table_prefix = "mov"
+
+[[context]]
+name = "home_projects"
+layer = 3
+purpose = "Category: home projects, quotes, change orders."
+table_prefix = "hom"
+
+[[context]]
+name = "custom_categories"
+layer = 3
+purpose = "User-defined categories on a shared item model."
+table_prefix = "cus"
+
+[[context]]
+name = "items"
+layer = 4
+purpose = "Shared item model: the tracked thing, its state, reminders and approvals."
+table_prefix = "itm"
+
+[[context]]
+name = "extraction"
+layer = 5
+purpose = "The only context allowed to call an LLM. Provider interface, prompt loading, output validation."
+table_prefix = "ext"
+
+[[context]]
+name = "billing"
+layer = 6
+purpose = "Plans, subscriptions, entitlements. Payment provider stays behind an interface."
+table_prefix = "bll"
+
+[[context]]
+name = "metering"
+layer = 7
+purpose = "Usage ledger: tokens, cost, per-task counters. Feeds cost gates and plan limits."
+table_prefix = "met"
+
+[[context]]
+name = "identity"
+layer = 7
+purpose = "Accounts, sessions, passwordless sign-in. No third-party passwords are ever stored."
+table_prefix = "idn"
+
+[[context]]
+name = "audit"
+layer = 8
+purpose = "Append-only record of who did what and which approval was given."
+table_prefix = "aud"
+
+[[context]]
+name = "engine"
+layer = 9
+purpose = "Deterministic Python: date resolution, time zones, recurrence, conflict checks. No Django, no network, no LLM."
+table_prefix = "eng"

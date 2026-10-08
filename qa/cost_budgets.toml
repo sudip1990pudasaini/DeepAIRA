@@ -1,0 +1,20 @@
+# Per-task budgets [ESTIMATE: calibrate on the first real eval run]. cost-gate also fails if cost
+# more than doubles against the baseline.
+
+[[task]]
+name = "extract_event"
+max_input_tokens = 2500
+max_output_tokens = 600
+max_cost_usd = 0.01
+
+[[task]]
+name = "extract_bill"
+max_input_tokens = 2500
+max_output_tokens = 600
+max_cost_usd = 0.01
+
+[[task]]
+name = "classify_inbound"
+max_input_tokens = 1800
+max_output_tokens = 250
+max_cost_usd = 0.006

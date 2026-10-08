@@ -1,0 +1,92 @@
+# Data map: every Django model field must be classified here (checked against models.py).
+# sensitivity: public|internal|personal|sensitive|secret. secret never enters an LLM prompt.
+
+[[field]]
+key = "capture.RawInput.body"
+sensitivity = "sensitive"
+store = "postgres"
+retention = "7 days then purge"
+deletion = "hard_delete"
+purpose = "Hold forwarded text just long enough to extract"
+in_llm_prompt = true
+
+[[field]]
+key = "capture.RawInput.sender"
+sensitivity = "personal"
+store = "postgres"
+retention = "7 days then purge"
+deletion = "hard_delete"
+purpose = "Verify sender for scam checks"
+in_llm_prompt = true
+
+[[field]]
+key = "items.Item.title"
+sensitivity = "personal"
+store = "postgres"
+retention = "until user deletes"
+deletion = "hard_delete"
+purpose = "Show the tracked item"
+in_llm_prompt = false
+
+[[field]]
+key = "items.Item.due_at"
+sensitivity = "personal"
+store = "postgres"
+retention = "until user deletes"
+deletion = "hard_delete"
+purpose = "Reminders"
+in_llm_prompt = false
+
+[[field]]
+key = "items.Item.amount"
+sensitivity = "sensitive"
+store = "postgres"
+retention = "until user deletes"
+deletion = "hard_delete"
+purpose = "Bill tracking"
+in_llm_prompt = false
+
+[[field]]
+key = "identity.Account.email"
+sensitivity = "personal"
+store = "postgres"
+retention = "until account deleted"
+deletion = "hard_delete"
+purpose = "Sign-in and reminders"
+in_llm_prompt = false
+
+[[field]]
+key = "identity.Account.password_hash"
+sensitivity = "secret"
+store = "postgres"
+retention = "until account deleted"
+deletion = "hard_delete"
+purpose = "Sign-in"
+in_llm_prompt = false
+
+[[field]]
+key = "metering.UsageEvent.tokens"
+sensitivity = "internal"
+store = "postgres"
+retention = "24 months"
+deletion = "anonymize"
+purpose = "Cost control and plan limits"
+in_llm_prompt = false
+
+[[field]]
+key = "audit.AuditEvent.action"
+sensitivity = "internal"
+store = "postgres"
+retention = "24 months"
+deletion = "retain_legal"
+purpose = "Approval and action history"
+in_llm_prompt = false
+
+[[field]]
+key = "extraction.LlmCall.prompt_id"
+sensitivity = "internal"
+store = "postgres"
+retention = "24 months"
+deletion = "anonymize"
+purpose = "Trace which prompt version ran"
+in_llm_prompt = false

@@ -1,0 +1,16 @@
+{
+  "$comment": "Output contract for the classify_inbound prompt: routes an item to a category and flags suspicious or instruction-bearing content. It never takes actions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["category", "suspicious", "suspicious_reasons", "contains_instructions_to_assistant", "confidence"],
+  "properties": {
+    "category": {"type": "string", "enum": ["calendar", "bills", "invoices", "returns", "moving", "home", "other"]},
+    "suspicious": {"type": "boolean"},
+    "suspicious_reasons": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["sender_mismatch", "payment_request", "credential_request", "urgency", "unusual_payment_method", "unknown_sender", "link_mismatch", "instruction_to_assistant"]}
+    },
+    "contains_instructions_to_assistant": {"type": "boolean"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

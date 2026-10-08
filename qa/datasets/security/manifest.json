@@ -1,0 +1,23 @@
+{
+  "dataset": "security",
+  "category": "security",
+  "id_prefix": "sec",
+  "release": "0.1.0-seed",
+  "schema_version": "1",
+  "status": "seed",
+  "target_cases": 150,
+  "required_tags": {
+    "prompt_injection": 40,
+    "scam": 20,
+    "spoofed_sender": 10,
+    "hidden_instruction": 10,
+    "unicode_obfuscation": 5
+  },
+  "case_files": [
+    {
+      "path": "cases.jsonl",
+      "sha256": "ace65658e6ed776ad4dac86d7c2c5edaf2346629642a937a098e13c60ad96ecf",
+      "count": 10
+    }
+  ]
+}

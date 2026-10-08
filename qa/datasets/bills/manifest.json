@@ -1,0 +1,22 @@
+{
+  "dataset": "bills",
+  "category": "bills",
+  "id_prefix": "bill",
+  "release": "0.1.0-seed",
+  "schema_version": "1",
+  "status": "seed",
+  "target_cases": 250,
+  "required_tags": {
+    "price_increase": 10,
+    "renewal": 15,
+    "do_not_infer": 10,
+    "insurance_renewal": 5
+  },
+  "case_files": [
+    {
+      "path": "cases.jsonl",
+      "sha256": "0ee09f538dfaf113416a57c98b78f4e398c064a4c50f3e62dc77ce678174fc75",
+      "count": 8
+    }
+  ]
+}

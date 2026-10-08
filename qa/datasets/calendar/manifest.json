@@ -1,0 +1,22 @@
+{
+  "dataset": "calendar",
+  "category": "calendar",
+  "id_prefix": "cal",
+  "release": "0.1.0-seed",
+  "schema_version": "1",
+  "status": "seed",
+  "target_cases": 250,
+  "required_tags": {
+    "relative_date": 20,
+    "dst_boundary": 5,
+    "ambiguous_date_format": 10,
+    "multiple_events": 10
+  },
+  "case_files": [
+    {
+      "path": "cases.jsonl",
+      "sha256": "7f385ae09eab06373d77f58e6b45f538ddbce348cedb397900d42f524d39ad63",
+      "count": 13
+    }
+  ]
+}

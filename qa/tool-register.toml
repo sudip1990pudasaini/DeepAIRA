@@ -1,0 +1,343 @@
+# Tool register: every dependency must appear here. New tools go through the vetting policy
+# in docs/04-tool-register.md. status: pending-vetting | approved | rejected.
+# "approved" needs license, vetted_on (YYYY-MM-DD) and telemetry notes. Nothing is approved yet.
+
+[[tool]]
+name = "django"
+ecosystem = "pypi"
+purpose = "Web framework, ORM, admin"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "BSD-3-Clause"
+exit_plan = "Models stay plain; API layer is separate (Ninja/OpenAPI)"
+
+[[tool]]
+name = "django-ninja"
+ecosystem = "pypi"
+purpose = "API-first layer with OpenAPI schema"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "2.8"
+license_claimed = "MIT"
+exit_plan = "Swap to DRF; OpenAPI contract is the source of truth"
+
+[[tool]]
+name = "psycopg"
+ecosystem = "pypi"
+purpose = "PostgreSQL driver"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "LGPL-3.0"
+exit_plan = "Any Django-supported driver"
+
+[[tool]]
+name = "anthropic"
+ecosystem = "pypi"
+purpose = "LLM SDK, allowed only in extraction context"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "MIT"
+exit_plan = "LLM provider interface; swap vendor behind it"
+
+[[tool]]
+name = "tzdata"
+ecosystem = "pypi"
+purpose = "IANA time zone database for zoneinfo"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "Apache-2.0"
+exit_plan = "OS tzdata"
+
+[[tool]]
+name = "pytest"
+ecosystem = "pypi"
+purpose = "Test runner"
+status = "pending-vetting"
+tier = "established"
+phase = "3.6"
+license_claimed = "MIT"
+exit_plan = "unittest-compatible tests"
+
+[[tool]]
+name = "pytest-cov"
+ecosystem = "pypi"
+purpose = "Coverage reporting"
+status = "pending-vetting"
+tier = "established"
+phase = "3.6"
+license_claimed = "MIT"
+exit_plan = "coverage.py directly"
+
+[[tool]]
+name = "hypothesis"
+ecosystem = "pypi"
+purpose = "Property-based tests for the engine"
+status = "pending-vetting"
+tier = "established"
+phase = "3.6"
+license_claimed = "MPL-2.0"
+exit_plan = "Example-based tests"
+
+[[tool]]
+name = "pytest-playwright"
+ecosystem = "pypi"
+purpose = "Browser end-to-end tests"
+status = "pending-vetting"
+tier = "established"
+phase = "3.6"
+license_claimed = "Apache-2.0"
+exit_plan = "Playwright API directly"
+
+[[tool]]
+name = "import-linter"
+ecosystem = "pypi"
+purpose = "Enforce bounded-context import contracts"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "2.6"
+license_claimed = "BSD-2-Clause"
+exit_plan = "pytestarch or a custom AST test"
+
+[[tool]]
+name = "ruff"
+ecosystem = "pypi"
+purpose = "Lint and format"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.7"
+license_claimed = "MIT"
+exit_plan = "flake8 + black"
+
+[[tool]]
+name = "mypy"
+ecosystem = "pypi"
+purpose = "Static typing"
+status = "pending-vetting"
+tier = "established"
+phase = "3.7"
+license_claimed = "MIT"
+exit_plan = "pyright"
+
+[[tool]]
+name = "bandit"
+ecosystem = "pypi"
+purpose = "Python security lint"
+status = "pending-vetting"
+tier = "established"
+phase = "3.7"
+license_claimed = "Apache-2.0"
+exit_plan = "Semgrep rules"
+
+[[tool]]
+name = "pip-audit"
+ecosystem = "pypi"
+purpose = "Known-vulnerability scan of dependencies"
+status = "pending-vetting"
+tier = "established"
+phase = "3.7"
+license_claimed = "Apache-2.0"
+exit_plan = "OSV-Scanner"
+
+[[tool]]
+name = "pre-commit"
+ecosystem = "pypi"
+purpose = "Local commit hooks"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "MIT"
+exit_plan = "Plain git hooks"
+
+[[tool]]
+name = "uv"
+ecosystem = "tool"
+purpose = "Python package and lock manager"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.5"
+license_claimed = "MIT OR Apache-2.0"
+exit_plan = "pip + pip-tools"
+
+[[tool]]
+name = "postgresql"
+ecosystem = "tool"
+purpose = "Primary database"
+status = "pending-vetting"
+tier = "established"
+phase = "3.4"
+license_claimed = "PostgreSQL License"
+exit_plan = "Managed Postgres provider"
+
+[[tool]]
+name = "docker"
+ecosystem = "tool"
+purpose = "Local services and reproducible builds"
+status = "pending-vetting"
+tier = "established"
+phase = "3.4"
+license_claimed = "Apache-2.0"
+exit_plan = "Podman"
+
+[[tool]]
+name = "semgrep"
+ecosystem = "tool"
+purpose = "Static analysis rules (OSS engine)"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.7"
+license_claimed = "LGPL-2.1"
+exit_plan = "bandit + ruff rules"
+
+[[tool]]
+name = "gitleaks"
+ecosystem = "tool"
+purpose = "Secret scanning"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.7"
+license_claimed = "MIT"
+exit_plan = "trufflehog"
+
+[[tool]]
+name = "mutmut"
+ecosystem = "pypi"
+purpose = "Mutation testing for the engine"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.6"
+license_claimed = "BSD-3-Clause"
+exit_plan = "Manual mutation review"
+
+[[tool]]
+name = "time-machine"
+ecosystem = "pypi"
+purpose = "Freeze time in tests"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.6"
+license_claimed = "MIT"
+exit_plan = "freezegun"
+
+[[tool]]
+name = "schemathesis"
+ecosystem = "pypi"
+purpose = "API fuzzing from OpenAPI"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.6"
+license_claimed = "MIT"
+exit_plan = "Hypothesis-based hand tests"
+
+[[tool]]
+name = "oasdiff"
+ecosystem = "tool"
+purpose = "Breaking-change check on OpenAPI"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "2.8"
+license_claimed = "Apache-2.0"
+exit_plan = "openapi-diff"
+
+[[tool]]
+name = "spectral"
+ecosystem = "npm"
+purpose = "OpenAPI linting"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "2.8"
+license_claimed = "Apache-2.0"
+exit_plan = "Redocly CLI"
+
+[[tool]]
+name = "react"
+ecosystem = "npm"
+purpose = "Web UI"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "MIT"
+exit_plan = "Standards-based components"
+
+[[tool]]
+name = "typescript"
+ecosystem = "npm"
+purpose = "Typed frontend"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "Apache-2.0"
+exit_plan = "JSDoc types"
+
+[[tool]]
+name = "vite"
+ecosystem = "npm"
+purpose = "Frontend build"
+status = "pending-vetting"
+tier = "established"
+phase = "3.5"
+license_claimed = "MIT"
+exit_plan = "webpack/rspack"
+
+[[tool]]
+name = "vitest"
+ecosystem = "npm"
+purpose = "Frontend unit tests"
+status = "pending-vetting"
+tier = "established"
+phase = "3.6"
+license_claimed = "MIT"
+exit_plan = "jest"
+
+[[tool]]
+name = "openapi-typescript"
+ecosystem = "npm"
+purpose = "Generate TS types from OpenAPI"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "2.8"
+license_claimed = "MIT"
+exit_plan = "orval or hand types"
+
+[[tool]]
+name = "vite-plugin-pwa"
+ecosystem = "npm"
+purpose = "PWA manifest and service worker"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.5"
+license_claimed = "MIT"
+exit_plan = "workbox directly"
+
+[[tool]]
+name = "promptfoo"
+ecosystem = "tool"
+purpose = "Prompt regression runner (watch: acquisition pending)"
+status = "pending-vetting"
+tier = "watch"
+phase = "3.6"
+license_claimed = "MIT"
+exit_plan = "Own runner: tools/score_extraction.py + dataset"
+
+[[tool]]
+name = "deepeval"
+ecosystem = "pypi"
+purpose = "LLM eval metrics (optional, later)"
+status = "pending-vetting"
+tier = "reputable-verify"
+phase = "3.6"
+license_claimed = "Apache-2.0"
+exit_plan = "Own deterministic scorers"
+
+[[tool]]
+name = "langfuse"
+ecosystem = "tool"
+purpose = "LLM tracing (cloud hobby tier, synthetic data only)"
+status = "pending-vetting"
+tier = "watch"
+phase = "4.4"
+license_claimed = "MIT (core)"
+exit_plan = "Own usage ledger in Postgres"

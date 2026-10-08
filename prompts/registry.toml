@@ -1,0 +1,42 @@
+# Prompt registry: the single source of truth for every prompt used by DeepAIRA.
+# Rules (enforced by tools/governance.py):
+#  - one file per version at prompts/<id>/v<version>.md; approved versions are immutable
+#  - sha256 / schema_sha256 must match the files (drafts: run `governance.py rehash-prompts`)
+#  - status: draft -> candidate -> approved -> retired. "approved" needs tested_model + eval_run
+#  - a prompt change means a new version and a new eval run (qa/eval-runs/)
+
+[[prompt]]
+id = "extract_event"
+version = "0.1.0"
+status = "draft"
+file = "prompts/extract_event/v0.1.0.md"
+sha256 = "aa0879023a451f7b2ffc51cfaa8d15cfe7acc430498231945d2c72ccab6805fa"
+output_schema = "prompts/schemas/extract_event.output.schema.json"
+schema_sha256 = "3d30023761c82462138f3c06327f3694d59752fa3c5aae4555990d0c6cf9b1cd"
+datasets = ["calendar", "security"]
+tested_model = ""
+eval_run = ""
+
+[[prompt]]
+id = "extract_bill"
+version = "0.1.0"
+status = "draft"
+file = "prompts/extract_bill/v0.1.0.md"
+sha256 = "68eda5795f6918b085963bce071c018c1753c6163195e6560a07b98b091a3272"
+output_schema = "prompts/schemas/extract_bill.output.schema.json"
+schema_sha256 = "85be5ac12839a10921f7fefe48d92cdb80f509c44bb92945bff5c9cbc43cae20"
+datasets = ["bills", "security"]
+tested_model = ""
+eval_run = ""
+
+[[prompt]]
+id = "classify_inbound"
+version = "0.1.0"
+status = "draft"
+file = "prompts/classify_inbound/v0.1.0.md"
+sha256 = "c34b0fcd3df9a45617f933fbda495a8140df97dc34a9699c177de6f668d95edd"
+output_schema = "prompts/schemas/classify_inbound.output.schema.json"
+schema_sha256 = "aa349477c8cb83c2640f8d9b476f5620c3c5e55c39f9898b43fd7c017676817d"
+datasets = ["security"]
+tested_model = ""
+eval_run = ""

@@ -1,0 +1,27 @@
+{
+  "$comment": "Output contract for the extract_bill prompt. Amounts are numbers; dates stay as verbatim text and are resolved by code.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["document_type", "vendor", "amount", "currency", "previous_amount", "due_date_text", "renewal_date_text", "billing_period_text", "recurrence", "already_paid", "price_change_text", "is_payment_request_suspicious", "needs_confirmation", "confirmation_reasons", "contains_instructions_to_assistant", "confidence"],
+  "properties": {
+    "document_type": {"type": "string", "enum": ["bill", "receipt", "renewal_notice", "statement", "cancellation_notice", "other"]},
+    "vendor": {"type": ["string", "null"]},
+    "amount": {"type": ["number", "null"], "minimum": 0},
+    "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+    "previous_amount": {"type": ["number", "null"], "minimum": 0},
+    "due_date_text": {"type": ["string", "null"]},
+    "renewal_date_text": {"type": ["string", "null"]},
+    "billing_period_text": {"type": ["string", "null"]},
+    "recurrence": {"enum": ["weekly", "monthly", "quarterly", "annual", "one_time", null]},
+    "already_paid": {"type": "boolean"},
+    "price_change_text": {"type": ["string", "null"]},
+    "is_payment_request_suspicious": {"type": "boolean"},
+    "needs_confirmation": {"type": "boolean"},
+    "confirmation_reasons": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["relative_date", "missing_amount", "missing_date", "ambiguous_date_format", "price_change", "cancellation", "suspicious", "low_confidence"]}
+    },
+    "contains_instructions_to_assistant": {"type": "boolean"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

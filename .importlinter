@@ -1,0 +1,56 @@
+# Import contracts for DeepAIRA, checked by `lint-imports`.
+# The layers block is generated from qa/contexts.toml: run
+#   python3 tools/governance.py gen-importlinter
+# and paste its output here whenever a context is added or moved.
+# `governance.py check` fails if this file and qa/contexts.toml disagree.
+
+[importlinter]
+root_package = deepaira
+# Needed so contracts can name third-party packages such as django and anthropic.
+include_external_packages = True
+
+[importlinter:contract:layers]
+name = Bounded contexts: higher layers may import lower ones, never the reverse or a sibling
+type = layers
+layers =
+    deepaira.admin | deepaira.privacy
+    deepaira.capture
+    deepaira.bills_renewals | deepaira.calendar_bookings | deepaira.custom_categories | deepaira.home_projects | deepaira.invoices_approvals | deepaira.moving_life_events | deepaira.returns_warranty
+    deepaira.items
+    deepaira.extraction
+    deepaira.billing
+    deepaira.identity | deepaira.metering
+    deepaira.audit
+    deepaira.engine
+
+[importlinter:contract:engine-pure]
+name = Engine stays plain Python: no Django, no LLM SDK
+type = forbidden
+source_modules =
+    deepaira.engine
+forbidden_modules =
+    django
+    anthropic
+
+[importlinter:contract:llm-only-in-extraction]
+name = Only the extraction context may import the LLM SDK
+type = forbidden
+source_modules =
+    deepaira.admin
+    deepaira.privacy
+    deepaira.capture
+    deepaira.calendar_bookings
+    deepaira.bills_renewals
+    deepaira.invoices_approvals
+    deepaira.returns_warranty
+    deepaira.moving_life_events
+    deepaira.home_projects
+    deepaira.custom_categories
+    deepaira.items
+    deepaira.billing
+    deepaira.metering
+    deepaira.identity
+    deepaira.audit
+    deepaira.engine
+forbidden_modules =
+    anthropic

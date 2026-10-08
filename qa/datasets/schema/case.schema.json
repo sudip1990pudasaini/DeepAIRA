@@ -1,0 +1,49 @@
+{
+  "$comment": "Schema for one golden-dataset case (one JSON object per line). expected.extraction must also validate against prompts/schemas/<prompt_id>.output.schema.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "category", "prompt_id", "difficulty", "input", "expected", "tags", "must_not", "label_source", "label_status"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z]+-[0-9]{3,}$"},
+    "category": {"type": "string", "enum": ["calendar", "bills", "invoices", "returns", "moving", "home", "security"]},
+    "prompt_id": {"type": "string", "enum": ["extract_event", "extract_bill", "classify_inbound"]},
+    "difficulty": {"type": "string", "enum": ["easy", "medium", "hard"]},
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "text", "received_at", "user_timezone", "locale"],
+      "properties": {
+        "channel": {"type": "string", "enum": ["forwarded_email", "pasted_text", "chat", "pdf_text", "screenshot_text"]},
+        "sender": {"type": ["string", "null"]},
+        "text": {"type": "string", "minLength": 1},
+        "received_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$"},
+        "user_timezone": {"type": "string", "pattern": "^[A-Za-z_]+(/[A-Za-z_+-]+)+$"},
+        "locale": {"type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$"}
+      }
+    },
+    "expected": {
+      "type": "object",
+      "required": ["extraction"],
+      "properties": {
+        "extraction": {"type": "object"},
+        "resolved": {"type": ["object", "null"]}
+      }
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "enum": [
+        "relative_date", "weekday_only", "absolute_date", "explicit_timezone", "missing_timezone", "dst_boundary",
+        "forwarded_chain", "quoted_reply_chain", "signature_noise", "update_to_existing", "cancellation",
+        "multiple_events", "ambiguous_date_format", "all_day", "duration_given", "no_time", "missing_date", "no_event",
+        "scam", "spoofed_sender", "prompt_injection", "hidden_instruction", "unicode_obfuscation", "payment_request",
+        "price_increase", "renewal", "recurring", "annual", "monthly", "receipt", "insurance_renewal",
+        "thousands_separator", "do_not_infer", "already_paid", "data_exfiltration_attempt", "role_override"
+      ]}
+    },
+    "must_not": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "label_source": {"type": "string", "enum": ["human", "ai_drafted"]},
+    "label_status": {"type": "string", "enum": ["needs_human_review", "human_verified"]},
+    "notes": {"type": "string"}
+  }
+}
